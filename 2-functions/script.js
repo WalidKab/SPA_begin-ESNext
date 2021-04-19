@@ -1,13 +1,13 @@
 //2.1 Fonctions simples
-const sayHello = function() {
+const sayHello = ()=> {
     console.log('Hello')
 };
 
-const sayMyName = function(first, last) {
+const sayMyName = (first, last)=> {
     console.log(first, last)
 };
 
-const sayMyAge = function(age) {
+const sayMyAge = (age)=> {
     console.log('You are ' + age + ' years old')
 };
 
@@ -19,14 +19,17 @@ sayMyAge(23);
 //2.2 this
 
 const object = {
+    // Définit des propriétés
     color: 'red',
     shape: 'circle',
     threeDimensions: false,
-    showThis: function() {
+    // fonction qui sert à montrer des éléments
+    showThis: ()=> {
         console.log(this)
     }
 };
 
+//Appel de la fonction showThis qui montre les propriétés de object
 object.showThis();
 
 //----------------------//
@@ -38,11 +41,17 @@ const odile = {
         last: 'Crok'
     },
     age: 23,
-    //sayHello: ...
-    //sayMyName:...
-    //sayMyAge:...
+    sayHello: ()=> {
+    console.log('Hello')
+},
+    sayMyName:()=> {
+    console.log(odile.name.first, odile.name.last)
+},
+    sayMyAge:()=> {
+    console.log('You are ' + odile.age + ' years old')
+}
 };
 
-//odile.sayHello()
-//odile.sayMyName()
-//odile.sayMyAge()
+odile.sayHello()
+odile.sayMyName()
+odile.sayMyAge()
