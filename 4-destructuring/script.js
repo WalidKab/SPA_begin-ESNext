@@ -42,3 +42,10 @@ for(let i=0; i<values.length; i++){
     console.log(texte, dateDebut, dateFin)
 }
 console.log(data);
+
+test = (...param) => {
+    for (let i=0;i<param.length;i++){
+        console.log(param[i])
+    }
+}
+test('1','2','3','4')
