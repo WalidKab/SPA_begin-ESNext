@@ -21,3 +21,60 @@ function secondWithError() {
   return sleep(100).then(() => {throw new Error("catch me if you can");})
 }
 
+//first().then(secondWithError).catch(console.error).then(third);
+
+// 2.1
+function getSpecies(species) {
+
+  const fetchHuman = fetch("https://swapi.dev/api/species/"+ species +"/");
+
+  return fetchHuman
+      .then(response => {
+    return response.json()
+  })
+       .then(species => {
+     console.log(species)
+     return species
+  })
+}
+
+getSpecies(1)
+
+// 2.2
+
+function getPeople(specie,char){                // (objet,quel personnage)
+  return fetch(specie.people[char])
+      .then(response => {
+        return response.json()
+      })
+      .then(character => {
+        console.log(character)
+      })
+}
+
+// getSpecies(1).then(response => getPeople(response,2))
+
+// 2.3
+
+function getAllPeople(specie) {
+  return getSpecies(specie)
+      .then(table => {
+        // console.log(table.people)
+        return table.people
+      })
+}
+
+getAllPeople(1)
+    .then(results => {
+      const list = results.map((url)=>{
+        return fetch(url)
+            .then(response => {
+              return response.json()})
+            .then(character => {
+              return character.name
+            })
+      })
+      Promise.all(list).then(response => {
+        console.log(response)
+      })
+    })
