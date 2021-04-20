@@ -21,6 +21,3 @@ function secondWithError() {
   return sleep(100).then(() => {throw new Error("catch me if you can");})
 }
 
-first();
-second();
-third();
